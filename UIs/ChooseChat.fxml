@@ -6,6 +6,6 @@
 
 <StackPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
    <children>
-      <Pane prefHeight="200.0" prefWidth="200.0" />
+      <Pane prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: linear-gradient(to top right, #8A2387, #E94057, #F27121);" />
    </children>
 </StackPane>
