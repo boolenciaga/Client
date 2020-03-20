@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.text.Font?>
@@ -16,9 +17,10 @@
             </Label>
             <Label alignment="CENTER" layoutX="206.0" layoutY="177.0" prefHeight="33.0" prefWidth="188.0" text="Username" textAlignment="CENTER" textFill="WHITE">
                <font>
-                  <Font name="Bookman Old Style Bold" size="12.0" />
+                  <Font name="Bookman Old Style Bold" size="25.0" />
                </font>
             </Label>
+            <TextField layoutX="192.0" layoutY="210.0" prefHeight="25.0" prefWidth="223.0" />
          </children>
       </Pane>
    </children>
