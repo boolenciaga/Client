@@ -20,7 +20,7 @@
                   <Font name="Bookman Old Style Bold" size="25.0" />
                </font>
             </Label>
-            <TextField layoutX="192.0" layoutY="210.0" prefHeight="25.0" prefWidth="223.0" />
+            <TextField layoutX="192.0" layoutY="210.0" prefHeight="25.0" prefWidth="223.0" style="-fx-background-color: translucent; -fx-font-color: white;" />
          </children>
       </Pane>
    </children>
