@@ -21,7 +21,7 @@
                   <Font name="Bookman Old Style Bold" size="25.0" />
                </font>
             </Label>
-            <TextField layoutX="192.0" layoutY="210.0" prefHeight="25.0" prefWidth="223.0" style="-fx-background-color: black; -fx-font-color: white;" />
+            <TextField layoutX="192.0" layoutY="210.0" prefHeight="25.0" prefWidth="223.0" style="-fx-background-color: translucent; -fx-font-color: white; -fx-border-color: white; -fx-border-width: 0 0 2 0;" />
             <Button layoutX="238.0" layoutY="288.0" mnemonicParsing="false" onAction="#goToDashBoard" prefHeight="39.0" prefWidth="132.0" style="-fx-background-color: grey;" text="Join Server" textFill="WHITE">
                <font>
                   <Font name="Bookman Old Style Bold" size="14.0" />
