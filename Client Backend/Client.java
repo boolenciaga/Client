@@ -9,14 +9,23 @@ public class Client
         new Client();
     }
 
+    Socket clientSocket;
     private int myClientNumber;
+
+    private Thread listeningThread;
+
+    ObjectOutputStream objectOutputToServer;
+    ObjectInputStream objectInputFromServer;
+
 
     public Client()
     {
+        Scanner keyboard = new Scanner(System.in);
+
         try
         {
             //Establish connection to server
-            Socket clientSocket = new Socket("localhost", 6000);
+            clientSocket = new Socket("localhost", 6000);
 
             if(clientSocket.isConnected())
                 System.out.println("Connected to server...\n");
@@ -24,38 +33,65 @@ public class Client
                 System.out.println("Connection failed...\n");
 
             //Wrap the IO streams
-            PrintWriter outputToServer = new PrintWriter(clientSocket.getOutputStream(), true);
-            BufferedReader inputFromServer = new BufferedReader(new InputStreamReader(clientSocket.getInputStream()));
+            wrapSocketStreams();
 
-            DataInputStream primInputFromServer = new DataInputStream(clientSocket.getInputStream());
+            //Read in client number sent by server
+            myClientNumber = objectInputFromServer.readInt();
+            System.out.println("MY NUM IS " + myClientNumber + "\n\n");
 
-            ObjectOutputStream objectOutputToServer = new ObjectOutputStream(clientSocket.getOutputStream());
+            //Start a thread for listening to incoming messages
+            listeningThread = new Thread(new listeningClass());
+            listeningThread.start();
 
-            myClientNumber = primInputFromServer.read();
-            System.out.println("MY NUM IS "+myClientNumber+"\n\n");
-
+            //Begin message relaying
             while(true)
             {
-                //Collect input from client
-                Scanner keyboard = new Scanner(System.in);
+                //collect input from client
                 System.out.print("CHAT: ");
                 String str = keyboard.nextLine();
 
-                Messages.ChatMsg msg = new Messages.ChatMsg();
-                msg.txt = str;
-                msg.channelToPublishTo = "The Chat Room";
-                msg.sentByUser = "Client #" + String.valueOf(myClientNumber);
+                //wrap input in a message
+                Messages.ChatMsg msg = new Messages.ChatMsg(str, "The Chat Room", "Client #" + String.valueOf(myClientNumber));
 
-                //Send client data to server
+                //send client message to server
                 objectOutputToServer.writeObject(msg);
-//                outputToServer.println(str);
-
-                //Receive and print data from server
-//                System.out.println("\nClient RECEIVED : " + inputFromServer.readLine() + "\n\n");
             }
         }
         catch (IOException e) {
+            System.out.println("exception caught in Client()***\n");
             e.printStackTrace();
+        }
+    }
+
+
+    private void wrapSocketStreams() throws IOException
+    {
+        objectOutputToServer = new ObjectOutputStream(clientSocket.getOutputStream());
+        objectInputFromServer = new ObjectInputStream(clientSocket.getInputStream());
+    }
+
+
+    private class listeningClass implements Runnable
+    {
+        Messages.ChatMsg incomingMsg;
+
+        @Override
+        public void run()
+        {
+            try
+            {
+                //Continuously receive and print data from server
+                while(true)
+                {
+                    incomingMsg = (Messages.ChatMsg) objectInputFromServer.readObject();
+                    System.out.println("\t\t\t\t\t\t\t" + incomingMsg.sentByUser + ": " + incomingMsg.txt);
+                }
+            }
+            catch (IOException | ClassNotFoundException e)
+            {
+                System.out.println("exception caught in listeningClass-run()\n");
+                //e.printStackTrace();
+            }
         }
     }
 }
