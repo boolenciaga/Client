@@ -1,20 +1,33 @@
 import java.io.Serializable;
 
-public class Messages
+
+public class Messages implements Serializable
 {
-    public static class ChatMsg implements Serializable
+    String messageType;
+    String sentByUser;
+
+    Messages(String msgType, String sentBy)
     {
-        String txt;
-        String channelToPublishTo;
-        String sentByUser;
+        messageType = msgType;
+        sentByUser = sentBy;
+    }
 
-        ChatMsg() {}
+    Messages()
+    {
 
-        ChatMsg(String txt, String channel, String user)
-        {
-            this.txt = txt;
-            channelToPublishTo = channel;
-            sentByUser = user;
-        }
+    }
+}
+
+
+class ChatMsg extends Messages
+{
+    String txt;
+    String channelToPublishTo;
+
+    ChatMsg(String txt, String channel, String userName)
+    {
+        super("ChatMsg", userName);
+        this.txt = txt;
+        channelToPublishTo = channel;
     }
 }
