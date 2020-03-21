@@ -14,7 +14,7 @@
 
 <BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
    <right>
-      <ScrollBar orientation="VERTICAL" BorderPane.alignment="CENTER" />
+      <ScrollBar id="ListScroll" orientation="VERTICAL" BorderPane.alignment="CENTER" />
    </right>
    <center>
       <ListView id="ChatWindow" prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER" />
