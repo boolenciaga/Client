@@ -16,7 +16,11 @@
                   <Font name="Bookman Old Style" size="45.0" />
                </font>
             </Label>
-            <TextField layoutX="115.0" layoutY="239.0" prefHeight="57.0" prefWidth="385.0" promptText="Enter channel name..." />
+            <TextField layoutX="115.0" layoutY="239.0" prefHeight="43.0" prefWidth="385.0" promptText="Enter channel name..." style="-fx-background-color: rgba(0, 0, 0, 0.5); -fx-font-color: white;">
+               <font>
+                  <Font size="17.0" />
+               </font>
+            </TextField>
          </children>
       </Pane>
    </children>
