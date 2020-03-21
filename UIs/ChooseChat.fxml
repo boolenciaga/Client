@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.text.Font?>
@@ -15,6 +16,7 @@
                   <Font name="Bookman Old Style" size="45.0" />
                </font>
             </Label>
+            <TextField layoutX="115.0" layoutY="239.0" prefHeight="57.0" prefWidth="385.0" promptText="Enter channel name..." />
          </children>
       </Pane>
    </children>
