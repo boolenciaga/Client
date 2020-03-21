@@ -1,4 +1,6 @@
-import java.io.*;
+import java.io.IOException;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
 import java.net.Socket;
 import java.util.Scanner;
 
@@ -11,6 +13,7 @@ public class Client
 
     Socket clientSocket;
     private int myClientNumber;
+    private String myClientName;
 
     private Thread listeningThread;
 
@@ -39,22 +42,47 @@ public class Client
             myClientNumber = objectInputFromServer.readInt();
             System.out.println("MY NUM IS " + myClientNumber + "\n\n");
 
+
+//            System.out.print("NAME: ");
+//            myClientName = keyboard.nextLine();
+
+            switch(myClientNumber) //auto assign names for testing
+            {
+                case 1:
+                    myClientName = "John";
+                    break;
+                case 2:
+                    myClientName = "Kate";
+                    break;
+                case 3:
+                    myClientName = "Marlo";
+                    break;
+                default:
+                    myClientName = "lush";
+            }
+
+            //output client name to server
+            objectOutputToServer.writeUTF(myClientName);
+            objectOutputToServer.flush();
+
+
             //Start a thread for listening to incoming messages
             listeningThread = new Thread(new listeningClass());
             listeningThread.start();
+
+            System.out.println("BEGIN CHATTING...");
 
             //Begin message relaying
             while(true)
             {
                 //collect input from client
-                System.out.print("CHAT: ");
                 String str = keyboard.nextLine();
 
                 //wrap input in a message
-                Messages.ChatMsg msg = new Messages.ChatMsg(str, "The Chat Room", "Client #" + String.valueOf(myClientNumber));
+                ChatMsg chatMsg = new ChatMsg(str, "The Chat Room", myClientName);
 
                 //send client message to server
-                objectOutputToServer.writeObject(msg);
+                objectOutputToServer.writeObject(chatMsg);
             }
         }
         catch (IOException e) {
@@ -73,7 +101,7 @@ public class Client
 
     private class listeningClass implements Runnable
     {
-        Messages.ChatMsg incomingMsg;
+        ChatMsg incomingMsg;
 
         @Override
         public void run()
@@ -83,8 +111,9 @@ public class Client
                 //Continuously receive and print data from server
                 while(true)
                 {
-                    incomingMsg = (Messages.ChatMsg) objectInputFromServer.readObject();
-                    System.out.println("\t\t\t\t\t\t\t" + incomingMsg.sentByUser + ": " + incomingMsg.txt);
+                    incomingMsg = (ChatMsg) objectInputFromServer.readObject();
+                    System.out.printf("%30s: ", incomingMsg.sentByUser);
+                    System.out.println(incomingMsg.txt);
                 }
             }
             catch (IOException | ClassNotFoundException e)
