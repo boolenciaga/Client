@@ -10,9 +10,9 @@
    <children>
       <Pane prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: linear-gradient(to top right, #8A2387, #E94057, #F27121);">
          <children>
-            <Label alignment="CENTER" layoutY="14.0" prefHeight="89.0" prefWidth="600.0" text="Enter a Chatroom" textAlignment="CENTER" textFill="#f0f0f0">
+            <Label alignment="CENTER" layoutY="73.0" prefHeight="89.0" prefWidth="600.0" style="-fx-background-color: black;" text="Enter a Chatroom" textAlignment="CENTER" textFill="#f0f0f0">
                <font>
-                  <Font name="Bookman Old Style" size="59.0" />
+                  <Font name="Bookman Old Style" size="45.0" />
                </font>
             </Label>
          </children>
