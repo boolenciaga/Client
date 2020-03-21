@@ -38,11 +38,7 @@
                   <Icon id="sendPicture" content="HELP_OUTLINE" layoutX="53.0" layoutY="42.0" />
                </children>
             </Pane>
-            <Pane prefHeight="200.0" prefWidth="200.0">
-               <children>
-                  <TextField id="lineEdit_MESSAGE" layoutX="-107.0" layoutY="37.0" prefHeight="27.0" prefWidth="394.0" />
-               </children>
-            </Pane>
+            <Pane prefHeight="200.0" prefWidth="200.0" />
             <Pane prefHeight="200.0" prefWidth="200.0">
                <children>
                   <Button id="sendMessageButton" layoutX="99.0" layoutY="37.0" mnemonicParsing="false" prefHeight="27.0" prefWidth="68.0" text="Send" />
