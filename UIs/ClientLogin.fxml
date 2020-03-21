@@ -15,12 +15,12 @@
                <font>
                   <Font size="15.0" />
                </font></TextField>
-            <Label alignment="CENTER" layoutY="26.0" prefHeight="96.0" prefWidth="600.0" text="Login" textFill="#fafafa">
+            <Label alignment="CENTER" layoutY="26.0" prefHeight="96.0" prefWidth="600.0" text="Login" textFill="#dfdfdf">
                <font>
                   <Font name="Bookman Old Style" size="72.0" />
                </font>
             </Label>
-            <Label alignment="CENTER" layoutX="206.0" layoutY="167.0" prefHeight="33.0" prefWidth="188.0" text="Username" textAlignment="CENTER" textFill="WHITE">
+            <Label alignment="CENTER" layoutX="206.0" layoutY="167.0" prefHeight="33.0" prefWidth="188.0" text="Username" textAlignment="CENTER" textFill="#f5f5f5">
                <font>
                   <Font name="Bookman Old Style Bold" size="25.0" />
                </font>
