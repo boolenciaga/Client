@@ -1,7 +1,4 @@
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.InputStreamReader;
-import java.io.PrintWriter;
+import java.io.*;
 import java.net.Socket;
 import java.util.Scanner;
 
@@ -12,6 +9,7 @@ public class Client
         new Client();
     }
 
+    private int myClientNumber;
 
     public Client()
     {
@@ -29,18 +27,31 @@ public class Client
             PrintWriter outputToServer = new PrintWriter(clientSocket.getOutputStream(), true);
             BufferedReader inputFromServer = new BufferedReader(new InputStreamReader(clientSocket.getInputStream()));
 
+            DataInputStream primInputFromServer = new DataInputStream(clientSocket.getInputStream());
+
+            ObjectOutputStream objectOutputToServer = new ObjectOutputStream(clientSocket.getOutputStream());
+
+            myClientNumber = primInputFromServer.read();
+            System.out.println("MY NUM IS "+myClientNumber+"\n\n");
+
             while(true)
             {
                 //Collect input from client
                 Scanner keyboard = new Scanner(System.in);
-                System.out.print("Please enter a string: ");
+                System.out.print("CHAT: ");
                 String str = keyboard.nextLine();
 
+                Messages.ChatMsg msg = new Messages.ChatMsg();
+                msg.txt = str;
+                msg.channelToPublishTo = "The Chat Room";
+                msg.sentByUser = "Client #" + String.valueOf(myClientNumber);
+
                 //Send client data to server
-                outputToServer.println(str);
+                objectOutputToServer.writeObject(msg);
+//                outputToServer.println(str);
 
                 //Receive and print data from server
-                System.out.println("\nClient RECEIVED : " + inputFromServer.readLine() + "\n\n");
+//                System.out.println("\nClient RECEIVED : " + inputFromServer.readLine() + "\n\n");
             }
         }
         catch (IOException e) {
