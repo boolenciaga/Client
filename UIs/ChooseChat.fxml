@@ -7,12 +7,11 @@
 <?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.text.Font?>
 
-
 <StackPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
    <children>
       <Pane prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: linear-gradient(to top right, #194F61  , #D63D32);">
          <children>
-            <Label alignment="CENTER" layoutY="27.0" prefHeight="89.0" prefWidth="600.0" style="-fx-background-color: black;" text="Enter a Chatroom" textAlignment="CENTER" textFill="#f0f0f0">
+            <Label alignment="CENTER" layoutY="27.0" prefHeight="89.0" prefWidth="600.0" style="-fx-background-color: translucent;" text="Enter a Chatroom" textAlignment="CENTER" textFill="#fafafa">
                <font>
                   <Font name="Bookman Old Style" size="45.0" />
                </font>
@@ -22,7 +21,7 @@
                   <Font name="Bookman Old Style Bold" size="14.0" />
                </font>
             </Button>
-            <TextField layoutX="108.0" layoutY="179.0" prefHeight="43.0" prefWidth="385.0" promptText="Enter channel name..." style="-fx-background-color: rgba(0, 0, 0, 0.5); -fx-font-color: white;">
+            <TextField layoutX="108.0" layoutY="157.0" prefHeight="43.0" prefWidth="385.0" promptText="Enter channel name..." style="-fx-background-color: rgba(0, 0, 0, 0.5); -fx-font-color: white;">
                <font>
                   <Font size="17.0" />
                </font>

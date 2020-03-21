@@ -11,18 +11,18 @@
    <children>
       <Pane prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: linear-gradient(to top, #1D4350,  #A43931);">
          <children>
-            <Label alignment="CENTER" prefHeight="122.0" prefWidth="607.0" text="Login" textFill="#fafafa">
+            <Label alignment="CENTER" layoutY="26.0" prefHeight="96.0" prefWidth="600.0" text="Login" textFill="#fafafa">
                <font>
                   <Font name="Bookman Old Style" size="72.0" />
                </font>
             </Label>
-            <Label alignment="CENTER" layoutX="206.0" layoutY="177.0" prefHeight="33.0" prefWidth="188.0" text="Username" textAlignment="CENTER" textFill="WHITE">
+            <Label alignment="CENTER" layoutX="206.0" layoutY="167.0" prefHeight="33.0" prefWidth="188.0" text="Username" textAlignment="CENTER" textFill="WHITE">
                <font>
                   <Font name="Bookman Old Style Bold" size="25.0" />
                </font>
             </Label>
-            <TextField alignment="CENTER" layoutX="184.0" layoutY="223.0" prefHeight="27.0" prefWidth="240.0" style="-fx-background-color: translucent; -fx-font-color: white; -fx-border-color: white; -fx-border-width: 0 0 2 0;" />
-            <Button layoutX="234.0" layoutY="308.0" mnemonicParsing="false" onAction="#goToDashBoard" prefHeight="39.0" prefWidth="132.0" style="-fx-background-color: grey;" text="Join Server" textFill="WHITE">
+            <TextField alignment="CENTER" layoutX="180.0" layoutY="223.0" prefHeight="27.0" prefWidth="240.0" style="-fx-background-color: rgba(0, 0, 0, 0.5); -fx-font-color: white; -fx-border-color: white; -fx-border-width: 0 0 1 0;" />
+            <Button layoutX="234.0" layoutY="308.0" mnemonicParsing="false" onAction="#goToDashBoard" prefHeight="39.0" prefWidth="132.0" style="-fx-background-color: rgb(214, 214, 214);" text="Join Server">
                <font>
                   <Font name="Bookman Old Style Bold" size="14.0" />
                </font>
