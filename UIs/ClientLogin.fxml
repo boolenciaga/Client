@@ -15,7 +15,7 @@
                <font>
                   <Font size="15.0" />
                </font></TextField>
-            <Label alignment="CENTER" layoutY="26.0" prefHeight="96.0" prefWidth="600.0" text="Login" textFill="#dfdfdf">
+            <Label alignment="CENTER" layoutY="26.0" prefHeight="96.0" prefWidth="600.0" text="Login" textFill="#f0f0f0">
                <font>
                   <Font name="Bookman Old Style" size="72.0" />
                </font>
