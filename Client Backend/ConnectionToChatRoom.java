@@ -63,12 +63,12 @@ public class ConnectionToChatRoom implements Runnable
             while(true)
             {
                 //collect chat input from client
-                String str = keyboard.nextLine();
+                String chatText = keyboard.nextLine();
 
                 //wrap input in a message
-                ChatMsg chatMsg = new ChatMsg(str, "The Chat Room", myUserName);
+                ChatMsg chatMsg = new ChatMsg(chatText, chatRoomName, myUserName);
 
-                //send client message to chat room server
+                //send chat message to chat room server
                 objectOutputToServer.writeObject(chatMsg);
                 objectOutputToServer.flush();
             }

@@ -3,27 +3,22 @@ import java.io.Serializable;
 
 public class Messages implements Serializable
 {
-    String messageType;
-    String sentBy;
+    final String messageType;
+    final String sentBy;
 
     Messages(String msgType, String sentBy)
     {
         messageType = msgType;
         this.sentBy = sentBy;
     }
-
-    Messages()
-    {
-
-    }
 }
 
 
 class ChatRoomInfoMsg extends Messages
 {
-    int chatRoomPort;
-    String chatRoomName;
-    boolean hadToBeCreated;
+    final int chatRoomPort;
+    final String chatRoomName;
+    final boolean hadToBeCreated;
 
     ChatRoomInfoMsg(int portNum, String roomName, boolean isBrandNewRoom)
     {
@@ -37,14 +32,14 @@ class ChatRoomInfoMsg extends Messages
 
 class ChatMsg extends Messages
 {
-    String txt;
-    String channelToPublishTo;
+    final String txt;
+    final String channelToPublishTo;
 
-    ChatMsg(String txt, String channel, String userName)
+    ChatMsg(String txt, String chatRoom, String userName)
     {
         super("ChatMsg", userName);
         this.txt = txt;
-        channelToPublishTo = channel;
+        channelToPublishTo = chatRoom;
     }
 
     //copy constructor but resets sentBy
