@@ -4,17 +4,33 @@ import java.io.Serializable;
 public class Messages implements Serializable
 {
     String messageType;
-    String sentByUser;
+    String sentBy;
 
     Messages(String msgType, String sentBy)
     {
         messageType = msgType;
-        sentByUser = sentBy;
+        this.sentBy = sentBy;
     }
 
     Messages()
     {
 
+    }
+}
+
+
+class ChatRoomInfoMsg extends Messages
+{
+    int chatRoomPort;
+    String chatRoomName;
+    boolean hadToBeCreated;
+
+    ChatRoomInfoMsg(int portNum, String roomName, boolean isBrandNewRoom)
+    {
+        super("ChatRoomInfo", "SeverManager");
+        chatRoomPort = portNum;
+        chatRoomName = roomName;
+        hadToBeCreated = isBrandNewRoom;
     }
 }
 
@@ -29,5 +45,11 @@ class ChatMsg extends Messages
         super("ChatMsg", userName);
         this.txt = txt;
         channelToPublishTo = channel;
+    }
+
+    //copy constructor but resets sentBy
+    ChatMsg(ChatMsg srcObj, String messageFrom)
+    {
+        this(srcObj.txt, srcObj.channelToPublishTo, messageFrom);
     }
 }
