@@ -7,7 +7,7 @@ import java.util.Scanner;
 public class ConnectionToChatRoom implements Runnable
 {
     //DATA MEMBERS
-    Socket socketToChatRoom;
+    private Socket socketToChatRoom;
     private final int chatRoomPort;
     private final String chatRoomName;
     private final String myUserName;
@@ -15,13 +15,13 @@ public class ConnectionToChatRoom implements Runnable
     private Thread mainThread;
     private Thread listeningThread;
 
-    ObjectOutputStream objectOutputToServer;
-    ObjectInputStream objectInputFromServer;
+    private ObjectOutputStream objectOutputToChatRoom;
+    private ObjectInputStream objectInputFromChatRoom;
 
-    Scanner keyboard = new Scanner(System.in);
+    private Scanner keyboard = new Scanner(System.in);
 
     //METHODS
-    public ConnectionToChatRoom(int portOfTheChatRoom, String nameOfTheChatRoom, String userName)
+    ConnectionToChatRoom(int portOfTheChatRoom, String nameOfTheChatRoom, String userName)
     {
         chatRoomPort = portOfTheChatRoom;
         chatRoomName = nameOfTheChatRoom;
@@ -50,8 +50,8 @@ public class ConnectionToChatRoom implements Runnable
             wrapSocketStreams();
 
             //output user name to chat room
-            objectOutputToServer.writeUTF(myUserName);
-            objectOutputToServer.flush();
+            objectOutputToChatRoom.writeUTF(myUserName);
+            objectOutputToChatRoom.flush();
 
             //Start a thread for listening to incoming messages
             listeningThread = new Thread(new listeningClass());
@@ -66,15 +66,15 @@ public class ConnectionToChatRoom implements Runnable
                 String chatText = keyboard.nextLine();
 
                 //wrap input in a message
-                ChatMsg chatMsg = new ChatMsg(chatText, chatRoomName, myUserName);
+                ChatMsg chatMsg = new ChatMsg(chatText, myUserName);
 
                 //send chat message to chat room server
-                objectOutputToServer.writeObject(chatMsg);
-                objectOutputToServer.flush();
+                objectOutputToChatRoom.writeObject(chatMsg);
+                objectOutputToChatRoom.flush();
             }
         }
         catch (IOException e) {
-            System.out.println("exception caught in the run() of " + myUserName + "'s ConnectionToChatRoom\n");
+            System.out.println("exception caught in the run() of " + myUserName + "'s ConnectionToChatRoom");
             e.printStackTrace();
         }
     }
@@ -82,24 +82,52 @@ public class ConnectionToChatRoom implements Runnable
 
     private class listeningClass implements Runnable
     {
-        ChatMsg incomingMsg;
+        Messages incomingMsg;
 
         @Override
         public void run()
         {
             try
             {
-                //Continuously receive and print data from server
+                //Continuously receive and process data from server
                 while(true)
                 {
-                    incomingMsg = (ChatMsg) objectInputFromServer.readObject();
-                    System.out.printf("%30s: ", incomingMsg.sentBy);
-                    System.out.println(incomingMsg.txt);
+                    incomingMsg = (Messages) objectInputFromChatRoom.readObject();
+
+                    if(incomingMsg instanceof ChatMsg)
+                    {
+                        ChatMsg chat = (ChatMsg) incomingMsg;
+                        System.out.printf("%30s: ", chat.sentBy);
+                        System.out.println(chat.txt);
+                    }
+                    else if(incomingMsg instanceof JoinedChatMsg)
+                    {
+                        JoinedChatMsg newUser = (JoinedChatMsg) incomingMsg;
+                        System.out.printf("%40s ", "{" + newUser.sentBy + " has joined}\n");
+                    }
+                    else if(incomingMsg instanceof LeftChatMsg)
+                    {
+                        LeftChatMsg userLeft = (LeftChatMsg) incomingMsg;
+                        System.out.printf("%40s ", "{" + userLeft.sentBy + " has left}\n");
+                    }
+                    else if(incomingMsg instanceof ChatHistoryMsg)
+                    {
+                        ChatHistoryMsg msg = (ChatHistoryMsg) incomingMsg;
+                        for (ChatMsg chat : msg.chatHistory) //print chat history
+                        {
+                            System.out.printf("%30s: ", chat.sentBy);
+                            System.out.println(chat.txt);
+                        }
+                    }
+                    else
+                    {
+                        System.out.println(myUserName + "'s listeningClass could not process received message\n");
+                    }
                 }
             }
             catch (IOException | ClassNotFoundException e)
             {
-                System.out.println("exception caught in the run() of " + myUserName + "'s ConnectionToChatRoom.listeningClass\n");
+                System.out.println("exception caught in the run() of " + myUserName + "'s ConnectionToChatRoom.listeningClass");
                 e.printStackTrace();
             }
         }
@@ -108,7 +136,7 @@ public class ConnectionToChatRoom implements Runnable
 
     private void wrapSocketStreams() throws IOException
     {
-        objectOutputToServer = new ObjectOutputStream(socketToChatRoom.getOutputStream());
-        objectInputFromServer = new ObjectInputStream(socketToChatRoom.getInputStream());
+        objectOutputToChatRoom = new ObjectOutputStream(socketToChatRoom.getOutputStream());
+        objectInputFromChatRoom = new ObjectInputStream(socketToChatRoom.getInputStream());
     }
 }

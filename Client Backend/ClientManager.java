@@ -18,7 +18,7 @@ public class ClientManager
 
     private ArrayList<ConnectionToChatRoom> chatRoomConnections = new ArrayList<>();
 
-    ClientManager()
+    private ClientManager()
     {
         try
         {
@@ -60,11 +60,10 @@ public class ClientManager
         }
         catch (IOException | ClassNotFoundException e)
         {
-            System.out.println("exception caught in ClientManager's constructor!\n");
+            System.out.println("exception caught in ClientManager's constructor!");
             e.printStackTrace();
         }
     }
-
 
     private void wrapSocketStreams()
     {

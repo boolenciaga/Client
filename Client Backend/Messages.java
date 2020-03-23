@@ -1,15 +1,18 @@
 import java.io.Serializable;
+import java.util.ArrayList;
 
 
-public class Messages implements Serializable
+class Messages implements Serializable
 {
     final String messageType;
     final String sentBy;
+    final String doNotSendTo;
 
-    Messages(String msgType, String sentBy)
+    Messages(String msgType, String sender)
     {
         messageType = msgType;
-        this.sentBy = sentBy;
+        this.sentBy = sender;
+        doNotSendTo = sender;
     }
 }
 
@@ -30,21 +33,51 @@ class ChatRoomInfoMsg extends Messages
 }
 
 
+class JoinedChatMsg extends Messages
+{
+    JoinedChatMsg(String userName)
+    {
+        super("JoinedChatMsg", userName);
+    }
+}
+
+
+class LeftChatMsg extends Messages
+{
+    LeftChatMsg(String userName)
+    {
+        super("LeftChatMsg", userName);
+    }
+}
+
+
 class ChatMsg extends Messages
 {
     final String txt;
-    final String channelToPublishTo;
 
-    ChatMsg(String txt, String chatRoom, String userName)
+    ChatMsg(String txt, String userName)
     {
         super("ChatMsg", userName);
         this.txt = txt;
-        channelToPublishTo = chatRoom;
     }
 
     //copy constructor but resets sentBy
     ChatMsg(ChatMsg srcObj, String messageFrom)
     {
-        this(srcObj.txt, srcObj.channelToPublishTo, messageFrom);
+        this(srcObj.txt, messageFrom);
+    }
+}
+
+
+class ChatHistoryMsg extends Messages
+{
+    ArrayList<ChatMsg> chatHistory;
+    String receivingName;
+
+    ChatHistoryMsg(ArrayList<ChatMsg> chatLog, String roomName, String sendTo)
+    {
+        super("ChatHistoryMsg", roomName);
+        chatHistory = (ArrayList<ChatMsg>) chatLog.clone();
+        receivingName = sendTo;
     }
 }
