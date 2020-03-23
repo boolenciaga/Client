@@ -11,7 +11,7 @@
    <children>
       <Pane prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: linear-gradient(to top, #1D4350,  #A43931);">
          <children>
-            <TextField alignment="CENTER" layoutX="180.0" layoutY="223.0" prefHeight="27.0" prefWidth="240.0" promptText="Enter Username" style="-fx-font-color: white; -fx-border-color: translucent; -fx-border-width: 1 1 1 1;">
+            <TextField id="usernameInput" alignment="CENTER" layoutX="180.0" layoutY="223.0" prefHeight="27.0" prefWidth="240.0" promptText="Enter Username" style="-fx-font-color: white; -fx-border-color: translucent; -fx-border-width: 1 1 1 1;">
                <font>
                   <Font size="15.0" />
                </font></TextField>
@@ -25,7 +25,7 @@
                   <Font name="Bookman Old Style Bold" size="25.0" />
                </font>
             </Label>
-            <Button layoutX="234.0" layoutY="308.0" mnemonicParsing="false" prefHeight="39.0" prefWidth="132.0" style="-fx-background-color: rgb(214, 214, 214);" text="Join Server">
+            <Button id="nextButtonLogin" layoutX="234.0" layoutY="308.0" mnemonicParsing="false" prefHeight="39.0" prefWidth="132.0" style="-fx-background-color: rgb(214, 214, 214);" text="Next">
                <font>
                   <Font name="Bookman Old Style Bold" size="14.0" />
                </font>
