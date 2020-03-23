@@ -21,7 +21,7 @@
                   <Font name="Bookman Old Style Bold" size="14.0" />
                </font>
             </Button>
-            <TextField layoutX="108.0" layoutY="157.0" prefHeight="43.0" prefWidth="385.0" promptText="Enter channel name..." style="-fx-background-color: rgba(0, 0, 0, 0.5); -fx-font-color: white;">
+            <TextField layoutX="108.0" layoutY="157.0" prefHeight="43.0" prefWidth="385.0" promptText="Enter channel name..." style="-fx-background-color: rgba(0, 0, 0, 0.5); -fx-font-color: rgba(255,255,255,1);">
                <font>
                   <Font size="17.0" />
                </font>
