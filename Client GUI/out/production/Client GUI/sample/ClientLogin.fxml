@@ -11,7 +11,7 @@
    <children>
       <Pane prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: linear-gradient(to top, #1D4350,  #A43931);">
          <children>
-            <TextField id="usernameInput" fx:id="usernameInput" alignment="CENTER" layoutX="180.0" layoutY="223.0" prefHeight="27.0" prefWidth="240.0" promptText="Enter Username" style="-fx-font-color: white; -fx-border-color: translucent; -fx-border-width: 1 1 1 1;">
+            <TextField id="usernameInput" fx:id="usernameInput" alignment="CENTER" layoutX="180.0" layoutY="223.0" prefHeight="27.0" prefWidth="240.0" promptText="Enter Username" style="-fx-text-fill: white; -fx-border-color: translucent; -fx-border-width: 1 1 1 1; -fx-background-color: rgba(0, 0, 0, 0.5);">
                <font>
                   <Font size="15.0" />
                </font></TextField>
