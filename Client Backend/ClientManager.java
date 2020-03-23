@@ -18,7 +18,7 @@ public class ClientManager
 
     private ArrayList<ConnectionToChatRoom> chatRoomConnections = new ArrayList<>();
 
-    ClientManager()
+    private ClientManager()
     {
         try
         {
@@ -35,8 +35,8 @@ public class ClientManager
             //collect and send user name to ServerManager
             System.out.print("Enter your name: ");
             Scanner keyboard = new Scanner(System.in);
-            final String userName = keyboard.nextLine();
-            objectOutputToServerManager.writeUTF(userName);
+            final String myUserName = keyboard.nextLine();
+            objectOutputToServerManager.writeUTF(myUserName);
             objectOutputToServerManager.flush();
 
             //DISABLED THE LOOP BECAUSE ONLY ONE CONSOLE == CONFLICTS
@@ -54,17 +54,16 @@ public class ClientManager
                 if(roomMsg.hadToBeCreated)
                     System.out.println("the room \"" + roomMsg.chatRoomName + "\" didn't exist, was created by server...");
 
-                //make a client object to handle the connection and chatting
-                chatRoomConnections.add(new ConnectionToChatRoom(roomMsg.chatRoomPort, roomMsg.chatRoomName, userName));
+                //make an object to handle the connection and chatting
+                chatRoomConnections.add(new ConnectionToChatRoom(roomMsg.chatRoomPort, roomMsg.chatRoomName, myUserName));
 //            }
         }
         catch (IOException | ClassNotFoundException e)
         {
-            System.out.println("exception caught in ClientManager's constructor!\n");
+            System.out.println("exception caught in ClientManager's constructor!");
             e.printStackTrace();
         }
     }
-
 
     private void wrapSocketStreams()
     {
