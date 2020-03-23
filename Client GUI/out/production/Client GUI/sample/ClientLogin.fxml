@@ -7,11 +7,11 @@
 <?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.text.Font?>
 
-<StackPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
+<StackPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.loginController">
    <children>
       <Pane prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: linear-gradient(to top, #1D4350,  #A43931);">
          <children>
-            <TextField alignment="CENTER" layoutX="180.0" layoutY="223.0" prefHeight="27.0" prefWidth="240.0" promptText="Enter Username" style="-fx-font-color: white; -fx-border-color: translucent; -fx-border-width: 1 1 1 1;">
+            <TextField id="usernameInput" fx:id="usernameInput" alignment="CENTER" layoutX="180.0" layoutY="223.0" prefHeight="27.0" prefWidth="240.0" promptText="Enter Username" style="-fx-font-color: white; -fx-border-color: translucent; -fx-border-width: 1 1 1 1;">
                <font>
                   <Font size="15.0" />
                </font></TextField>
@@ -20,12 +20,12 @@
                   <Font name="Bookman Old Style" size="72.0" />
                </font>
             </Label>
-            <Label alignment="CENTER" layoutX="206.0" layoutY="167.0" prefHeight="33.0" prefWidth="188.0" text="Username" textAlignment="CENTER" textFill="#f5f5f5">
+            <Label fx:id="userNameLabel" alignment="CENTER" layoutX="206.0" layoutY="167.0" prefHeight="33.0" prefWidth="188.0" text="Username" textAlignment="CENTER" textFill="#f5f5f5">
                <font>
                   <Font name="Bookman Old Style Bold" size="25.0" />
                </font>
             </Label>
-            <Button layoutX="234.0" layoutY="308.0" mnemonicParsing="false" prefHeight="39.0" prefWidth="132.0" style="-fx-background-color: rgb(214, 214, 214);" text="Join Server">
+            <Button id="nextButtonLogin" fx:id="nextButton" layoutX="234.0" layoutY="308.0" mnemonicParsing="false" onAction="#nextButtonClicked" prefHeight="39.0" prefWidth="132.0" style="-fx-background-color: rgb(214, 214, 214);" text="Next">
                <font>
                   <Font name="Bookman Old Style Bold" size="14.0" />
                </font>
