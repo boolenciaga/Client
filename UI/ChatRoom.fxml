@@ -32,12 +32,12 @@
             </Pane>
             <Pane prefHeight="200.0" prefWidth="200.0">
                <children>
-                  <TextField id="lineEdit_MESSAGE" layoutX="-107.0" layoutY="37.0" prefHeight="27.0" prefWidth="394.0" />
+                  <TextField id="lineEdit_MESSAGE" layoutX="-107.0" layoutY="37.0" prefHeight="27.0" prefWidth="394.0" style="-fx-background-color: white;" />
                </children>
             </Pane>
             <Pane prefHeight="200.0" prefWidth="200.0">
                <children>
-                  <Button id="sendMessageButton" layoutX="99.0" layoutY="37.0" mnemonicParsing="false" prefHeight="27.0" prefWidth="68.0" text="Send">
+                  <Button id="sendMessageButton" layoutX="99.0" layoutY="37.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="68.0" text="Send">
                      <font>
                         <Font name="System Bold" size="12.0" />
                      </font></Button>
