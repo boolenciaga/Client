@@ -11,6 +11,8 @@ import java.util.Stack;
 
 class Global
 {
+    static String myUserName;
+
     //socket with the ClientManager
 
     static Socket socketWithClientManager;

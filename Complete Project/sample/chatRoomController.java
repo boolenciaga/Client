@@ -4,28 +4,45 @@ import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.Node;
 import javafx.scene.control.Button;
-import javafx.scene.control.TextArea;
+import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
-import javafx.scene.image.Image;
-import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.text.Text;
 import javafx.scene.text.TextFlow;
-import java.io.FileInputStream;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
 public class chatRoomController implements Initializable
 {
-    @FXML
-    private TextFlow messageDisplayArea;
+    // WINDOW INITIALIZER
+
+    @Override
+    public void initialize(URL x, ResourceBundle y)
+    {
+        String roomName = Global.roomNames.pop();
+
+        chatRoomNameLabel.setText(roomName);
+
+        //TO DO:
+        //display the user name somewhere nice (Global.myUserName)
+
+        Thread listeningThread = new Thread(new listeningClass(Global.socketMap.get(roomName)));
+        listeningThread.start();
+        messagingBox.requestFocus();
+    }
+
+
+
+    // GUI CONTROLS
 
     @FXML
-    private TextArea messageLog;
+    private Label chatRoomNameLabel;
+
+    @FXML
+    private TextFlow displayMessagesArea;
 
     @FXML
     private TextField messagingBox;
@@ -34,57 +51,27 @@ public class chatRoomController implements Initializable
     private Button sendButton;
 
 
-
-    @Override
-    public void initialize(URL x, ResourceBundle y)
-    {
-        String sceneName = Global.roomNames.pop();
-
-        //TO DO:
-        //set the chat window name
-
-        Thread listeningThread = new Thread(new listeningClass(Global.socketMap.get(sceneName)));
-        listeningThread.start();
-        messagingBox.requestFocus();
-    }
-
-
-    @FXML
-    void onEnterChatMessage(KeyEvent event) {
-        if(event.getCode() == KeyCode.ENTER) {
-            if (!messagingBox.getText().isEmpty()) {
-                //get scene name and use it to retrieve socket between this window and the ConnToChatRoom
-                //            Node source = (Node) event.getSource();
-                String sceneName = (String) sendButton.getScene().getUserData();
-
-                //            System.out.println(sceneName + " vs " + sendButton.getScene() + " vs " + sendButton.getScene().getUserData());
-
-                Global.connectionPackage connectionWithClientObj = Global.socketMap.get(sceneName);
-
-                try {
-                    connectionWithClientObj.out.writeUTF(messagingBox.getText());
-                    connectionWithClientObj.out.flush();
-
-                    messagingBox.clear(); //clear the messaging box
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
-            }
-        }
-    }
-
-
-
     @FXML
     void sendButtonClicked(ActionEvent event)
     {
-        if(!messagingBox.getText().isEmpty())
+        messageBoxEntered();
+    }
+
+    @FXML
+    void onEnterChatMessage(KeyEvent event)
+    {
+        if(event.getCode() == KeyCode.ENTER)
+        {
+            messageBoxEntered();
+        }
+    }
+
+    void messageBoxEntered()
+    {
+        if (!messagingBox.getText().isEmpty())
         {
             //get scene name and use it to retrieve socket between this window and the ConnToChatRoom
-//            Node source = (Node) event.getSource();
             String sceneName = (String) sendButton.getScene().getUserData();
-
-//            System.out.println(sceneName + " vs " + sendButton.getScene() + " vs " + sendButton.getScene().getUserData());
 
             Global.connectionPackage connectionWithClientObj = Global.socketMap.get(sceneName);
 
@@ -102,6 +89,8 @@ public class chatRoomController implements Initializable
     }
 
 
+
+    // THE LISTENING CLASS
 
     class listeningClass implements Runnable
     {
@@ -129,7 +118,7 @@ public class chatRoomController implements Initializable
                     Platform.runLater(new Runnable() {
                         @Override
                         public void run() {
-                            messageDisplayArea.getChildren().add(theText);
+                            displayMessagesArea.getChildren().add(theText);
                             //messageDisplayArea.getChildren().add(imageView);
                         }
                     });
