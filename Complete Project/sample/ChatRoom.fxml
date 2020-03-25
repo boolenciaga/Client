@@ -25,7 +25,7 @@
             </Pane>
             <Pane prefHeight="200.0" prefWidth="200.0">
                <children>
-                  <TextField id="lineEdit_MESSAGE" fx:id="messagingBox" layoutX="-107.0" layoutY="37.0" prefHeight="27.0" prefWidth="394.0" style="-fx-background-color: white;" />
+                  <TextField id="lineEdit_MESSAGE" fx:id="messagingBox" layoutX="-107.0" layoutY="37.0" onKeyPressed="#onEnterChatMessage" prefHeight="27.0" prefWidth="394.0" style="-fx-background-color: white;" />
                </children>
             </Pane>
             <Pane prefHeight="200.0" prefWidth="200.0">

@@ -10,6 +10,8 @@ import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.input.KeyCode;
+import javafx.scene.input.KeyEvent;
 import javafx.scene.text.Text;
 import javafx.scene.text.TextFlow;
 import java.io.FileInputStream;
@@ -43,6 +45,32 @@ public class chatRoomController implements Initializable
 
         Thread listeningThread = new Thread(new listeningClass(Global.socketMap.get(sceneName)));
         listeningThread.start();
+        messagingBox.requestFocus();
+    }
+
+
+    @FXML
+    void onEnterChatMessage(KeyEvent event) {
+        if(event.getCode() == KeyCode.ENTER) {
+            if (!messagingBox.getText().isEmpty()) {
+                //get scene name and use it to retrieve socket between this window and the ConnToChatRoom
+                //            Node source = (Node) event.getSource();
+                String sceneName = (String) sendButton.getScene().getUserData();
+
+                //            System.out.println(sceneName + " vs " + sendButton.getScene() + " vs " + sendButton.getScene().getUserData());
+
+                Global.connectionPackage connectionWithClientObj = Global.socketMap.get(sceneName);
+
+                try {
+                    connectionWithClientObj.out.writeUTF(messagingBox.getText());
+                    connectionWithClientObj.out.flush();
+
+                    messagingBox.clear(); //clear the messaging box
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }
+        }
     }
 
 
