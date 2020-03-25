@@ -20,13 +20,8 @@ public class loginController{
     // LOGIN WINDOW
 
     @FXML
-    private Label userNameLabel;
-
-    @FXML
     private TextField usernameInput;
 
-    @FXML
-    StackPane windowID;
 
     @FXML
     void nextButtonClicked(Event event) throws IOException
@@ -63,23 +58,16 @@ public class loginController{
             window.setScene(chatSelectionScene);
             window.show();
         }
-        else
-        {
-            //duplicate username? or username input is empty
-            userNameLabel.setText("ERROR");
-            usernameInput.clear();
-        }
     }
 
 
-
     // JOIN ROOM WINDOW
-
-    @FXML
-    private Label enterChatLabel;
-
     @FXML
     private TextField roomNameField;
+
+    @FXML
+    private Label usernameChatSelectionLabel;                       // Needs to be implemented by runLater
+
 
     @FXML
     void joinButtonClicked(ActionEvent event)
