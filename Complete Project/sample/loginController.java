@@ -123,6 +123,7 @@ public class loginController{
                     Scene anotherScene = new Scene(anotherRoot);
                     anotherScene.setUserData(roomName); //important to set the name
                     Stage anotherStage = new Stage();
+                    anotherStage.setTitle("Chat Room Window: Internet Relay Chat");
                     anotherStage.setScene(anotherScene);
                     anotherStage.show();
                 }

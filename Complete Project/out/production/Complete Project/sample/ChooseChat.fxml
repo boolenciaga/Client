@@ -11,7 +11,7 @@
    <children>
       <Pane prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: linear-gradient(to top right, #194F61  , #D63D32);">
          <children>
-            <Label fx:id="chatLabel" alignment="CENTER" layoutY="27.0" prefHeight="89.0" prefWidth="600.0" style="-fx-background-color: translucent;" text="Enter a Chatroom" textAlignment="CENTER" textFill="#fafafa">
+            <Label fx:id="enterChatLabel" alignment="CENTER" layoutY="27.0" prefHeight="89.0" prefWidth="600.0" style="-fx-background-color: translucent;" text="Enter a Chatroom" textAlignment="CENTER" textFill="#fafafa">
                <font>
                   <Font name="Bookman Old Style" size="45.0" />
                </font>
@@ -21,7 +21,7 @@
                   <Font name="Bookman Old Style Bold" size="14.0" />
                </font>
             </Button>
-            <TextField fx:id="roomName" focusTraversable="false" layoutX="108.0" layoutY="157.0" onKeyPressed="#onEnterChatSelection" prefHeight="43.0" prefWidth="385.0" promptText="Enter channel name..." style="-fx-background-color: rgba(0, 0, 0, 0.5); -fx-text-fill: white;">
+            <TextField fx:id="roomNameField" focusTraversable="false" layoutX="108.0" layoutY="157.0" onKeyPressed="#onEnterChatSelection" prefHeight="43.0" prefWidth="385.0" promptText="Enter channel name..." style="-fx-background-color: rgba(0, 0, 0, 0.5); -fx-text-fill: white;">
                <font>
                   <Font size="17.0" />
                </font>

@@ -17,25 +17,6 @@ import java.util.ResourceBundle;
 
 public class chatRoomController implements Initializable
 {
-    // WINDOW INITIALIZER
-
-    @Override
-    public void initialize(URL x, ResourceBundle y)
-    {
-        String roomName = Global.roomNames.pop();
-
-        chatRoomNameLabel.setText(roomName);
-
-        //TO DO:
-        //display the user name somewhere nice (Global.myUserName)
-
-        Thread listeningThread = new Thread(new listeningClass(Global.socketMap.get(roomName)));
-        listeningThread.start();
-        messagingBox.requestFocus();
-    }
-
-
-
     // GUI CONTROLS
 
     @FXML
@@ -49,6 +30,30 @@ public class chatRoomController implements Initializable
 
     @FXML
     private Button sendButton;
+
+    @FXML
+    private Label nameLabel;
+
+
+
+    // WINDOW INITIALIZER
+
+    @Override
+    public void initialize(URL x, ResourceBundle y)
+    {
+        String roomName = Global.roomNames.pop();
+
+        nameLabel.setText(Global.myUserName + ": ");
+
+        chatRoomNameLabel.setText(roomName);
+
+        //TO DO:
+        //display the user name somewhere nice (Global.myUserName)
+
+        Thread listeningThread = new Thread(new listeningClass(Global.socketMap.get(roomName)));
+        listeningThread.start();
+        messagingBox.requestFocus();
+    }
 
 
     @FXML
