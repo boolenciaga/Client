@@ -15,7 +15,6 @@ import javafx.scene.input.KeyEvent;
 import javafx.scene.text.Text;
 import javafx.scene.text.TextFlow;
 import javafx.stage.FileChooser;
-
 import java.io.File;
 import java.io.IOException;
 import java.net.URL;
@@ -75,14 +74,26 @@ public class chatRoomController implements Initializable
                 new FileChooser.ExtensionFilter("BMP Files", "*.bmp") );
 
         File selectedPhoto = photoChooser.showOpenDialog(null);
-
+        String photoExtension = (selectedPhoto.getAbsolutePath()).substring((selectedPhoto.getAbsolutePath()).length() - 4);
+        System.out.println("EXTENSION IS: " + photoExtension);
 
         if(selectedPhoto != null)
         {
-            String path = selectedPhoto.getAbsolutePath();
 
             /*
                 TODO:    Code to send Image over to listener
+
+        BufferedImage image = ImageIO.read(selectedPhoto);
+
+        ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
+        ImageIO.write(image, photoExtension , byteArrayOutputStream);
+
+        byte[] size = ByteBuffer.allocate(4).putInt(byteArrayOutputStream.size()).array();
+        outputStream.write(size);
+        outputStream.write(byteArrayOutputStream.toByteArray());
+        outputStream.flush();
+
+
              */
 
 
