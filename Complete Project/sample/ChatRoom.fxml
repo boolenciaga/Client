@@ -36,10 +36,11 @@
             </Pane>
             <Pane prefHeight="200.0" prefWidth="200.0">
                <children>
-                  <Button id="sendMessageButton" fx:id="sendButton" layoutX="99.0" layoutY="37.0" mnemonicParsing="false" onAction="#sendButtonClicked" prefHeight="30.0" prefWidth="68.0" text="Send">
+                  <Button id="sendMessageButton" fx:id="sendButton" layoutX="99.0" layoutY="35.0" mnemonicParsing="false" onAction="#sendButtonClicked" prefHeight="30.0" prefWidth="68.0" text="Send">
                      <font>
                         <Font name="System Bold" size="12.0" />
                      </font></Button>
+                  <Button fx:id="photoButton" layoutX="179.0" layoutY="36.0" mnemonicParsing="false" onAction="#photoButtonClicked" prefHeight="28.0" prefWidth="37.0" />
                </children>
             </Pane>
          </children>
