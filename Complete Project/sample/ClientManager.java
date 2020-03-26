@@ -30,7 +30,7 @@ public class ClientManager implements Runnable
             serverSocketForGUI = new ServerSocket(port);
 
             //establish socket connection to ServerManager
-            socket = new Socket("localhost", 7777);
+            socket = new Socket("localhost", 9000);
 
             if(socket.isConnected())
                 System.out.println("Connected to ServerManager...\n");

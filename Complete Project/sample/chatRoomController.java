@@ -54,11 +54,11 @@ public class chatRoomController implements Initializable
 
         chatRoomNameLabel.setText(roomName);
 
-        Image image = new Image(getClass().getResourceAsStream("sample.icon.png"));
-        photoButton.setGraphic(new ImageView(image));
-
-        //TO DO:
-        //display the user name somewhere nice (Global.myUserName)
+        Image image = new Image(getClass().getResourceAsStream("/resource/icon.png"));
+        ImageView photo = new ImageView(image);
+        photo.fitWidthProperty().bind(photoButton.widthProperty());
+        photo.fitHeightProperty().bind(photoButton.heightProperty());
+        photoButton.setGraphic(photo);
 
         Thread listeningThread = new Thread(new listeningClass(Global.socketMap.get(roomName)));
         listeningThread.start();
@@ -80,8 +80,9 @@ public class chatRoomController implements Initializable
         if(selectedPhoto != null)
         {
             String path = selectedPhoto.getAbsolutePath();
+
             /*
-                    Code to send Image over to listener
+                TODO:    Code to send Image over to listener
              */
 
 

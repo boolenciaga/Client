@@ -18,7 +18,7 @@ public class ServerManager
     // DATA MEMBERS
 
     //the port this ServerManager is on
-    private final int serverPort = 7777;
+    private final int serverPort = 9000;
 
     //an ArrayList of the different ClientManagers connected to this server
     private ArrayList<ClientConnection> clientList = new ArrayList<>();
