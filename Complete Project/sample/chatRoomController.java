@@ -15,9 +15,14 @@ import javafx.scene.input.KeyEvent;
 import javafx.scene.text.Text;
 import javafx.scene.text.TextFlow;
 import javafx.stage.FileChooser;
+
+import javax.imageio.ImageIO;
+import java.awt.image.BufferedImage;
+import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.IOException;
 import java.net.URL;
+import java.nio.ByteBuffer;
 import java.util.ResourceBundle;
 
 public class chatRoomController implements Initializable
@@ -65,11 +70,10 @@ public class chatRoomController implements Initializable
     }
 
     @FXML
-    void photoButtonClicked(ActionEvent e)
-    {
+    void photoButtonClicked(ActionEvent e) throws IOException {
         FileChooser photoChooser = new FileChooser();
         photoChooser.getExtensionFilters().addAll(
-                new FileChooser.ExtensionFilter("JPEG Files", "*.pdf"),
+                new FileChooser.ExtensionFilter("JPEG Files", "*.jpg"),
                 new FileChooser.ExtensionFilter("PNG Files", "*.png"),
                 new FileChooser.ExtensionFilter("BMP Files", "*.bmp") );
 
@@ -87,7 +91,7 @@ public class chatRoomController implements Initializable
                   DataOutputStream dout=new DataOutputStream(server.getOutputStream());x
                   BufferedImage img=ImageIO.read(ImageIO.createImageInputStream(socket.getInputStream()));
 
-        *********************************************************************************************************
+        ********************************************************************************************************
         BufferedImage image = ImageIO.read(selectedPhoto);
 
         ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
@@ -98,8 +102,8 @@ public class chatRoomController implements Initializable
         outputStream.write(byteArrayOutputStream.toByteArray());
         outputStream.flush();
 
+        */
 
-             */
 
 
         }
