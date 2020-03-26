@@ -4,13 +4,19 @@ import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.text.Text;
 import javafx.scene.text.TextFlow;
+import javafx.stage.FileChooser;
+
+import java.io.File;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -34,7 +40,8 @@ public class chatRoomController implements Initializable
     @FXML
     private Label nameLabel;
 
-
+    @FXML
+    private Button photoButton;
 
     // WINDOW INITIALIZER
 
@@ -47,12 +54,49 @@ public class chatRoomController implements Initializable
 
         chatRoomNameLabel.setText(roomName);
 
+        Image image = new Image(getClass().getResourceAsStream("sample.icon.png"));
+        photoButton.setGraphic(new ImageView(image));
+
         //TO DO:
         //display the user name somewhere nice (Global.myUserName)
 
         Thread listeningThread = new Thread(new listeningClass(Global.socketMap.get(roomName)));
         listeningThread.start();
         messagingBox.requestFocus();
+    }
+
+    @FXML
+    void photoButtonClicked(ActionEvent e)
+    {
+        FileChooser photoChooser = new FileChooser();
+        photoChooser.getExtensionFilters().addAll(
+                new FileChooser.ExtensionFilter("JPEG Files", "*.pdf"),
+                new FileChooser.ExtensionFilter("PNG Files", "*.png"),
+                new FileChooser.ExtensionFilter("BMP Files", "*.bmp") );
+
+        File selectedPhoto = photoChooser.showOpenDialog(null);
+
+
+        if(selectedPhoto != null)
+        {
+            String path = selectedPhoto.getAbsolutePath();
+            /*
+                    Code to send Image over to listener
+             */
+
+
+        }
+        else
+        {
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("Error Dialog");
+            alert.setHeaderText("Unable to send photo.");
+            alert.setContentText("There was an error sending a file. Please try again.");
+
+            alert.showAndWait();
+
+            System.out.println("Unable to send file!!!!\n\n");
+        }
     }
 
 
