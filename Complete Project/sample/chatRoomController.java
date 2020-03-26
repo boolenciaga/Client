@@ -74,7 +74,7 @@ public class chatRoomController implements Initializable
                 new FileChooser.ExtensionFilter("BMP Files", "*.bmp") );
 
         File selectedPhoto = photoChooser.showOpenDialog(null);
-        String photoExtension = (selectedPhoto.getAbsolutePath()).substring((selectedPhoto.getAbsolutePath()).length() - 4);
+        String photoExtension = (selectedPhoto.getAbsolutePath()).substring((selectedPhoto.getAbsolutePath()).length() - 3);
         System.out.println("EXTENSION IS: " + photoExtension);
 
         if(selectedPhoto != null)
@@ -83,6 +83,11 @@ public class chatRoomController implements Initializable
             /*
                 TODO:    Code to send Image over to listener
 
+                 DataInputStream din=new DataInputStream(server.getInputStream());
+                  DataOutputStream dout=new DataOutputStream(server.getOutputStream());x
+                  BufferedImage img=ImageIO.read(ImageIO.createImageInputStream(socket.getInputStream()));
+
+        *********************************************************************************************************
         BufferedImage image = ImageIO.read(selectedPhoto);
 
         ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
