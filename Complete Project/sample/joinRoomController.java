@@ -32,6 +32,8 @@ public class joinRoomController implements Initializable {
     public void initialize(URL x, ResourceBundle y)
     {
         usernameChatSelectionLabel.setText(Global.myUserName + ": ");
+        roomNameField.setFocusTraversable(true);
+        roomNameField.requestFocus();
     }
 
 
